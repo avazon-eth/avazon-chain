@@ -1,12 +1,17 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import {Script, console} from "forge-std/Script.sol";
+import "forge-std/Script.sol";
+import "../src/AvatarCollection.sol";
+import "../src/CrossProtocolNFTMapping.sol"
 
-contract CounterScript is Script {
-    function setUp() public {}
-
-    function run() public {
-        vm.broadcast();
+contract DeployAvatarCollection is Script {
+    function run() external {
+        vm.startBroadcast();
+        
+        CrossProtocolNFTMapping mapper = new CrossProtocolNFTMapping();
+        AvatarCollection avatar = new AvatarCollection("AVAZON", "AVA", 0x17FE961Ba4A15EB9B69b5a46E08789D27BA5ea30);
+        
+        vm.stopBroadcast();
     }
 }
